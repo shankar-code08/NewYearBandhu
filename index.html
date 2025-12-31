@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Happy New Year 2026</title>
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <style>
+      /* ================= GLOBAL ================= */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease,
+          transform 0.3s ease;
+      }
+      html,
+      body {
+        font-family: Poppins, system-ui, sans-serif;
+        scroll-behavior: smooth;
+      }
+      body {
+        background: linear-gradient(180deg, #5fbdfd, #d9f2ff);
+        overflow-x: hidden;
+      }
+
+      /* ================= CLOUDS ================= */
+      .cloud {
+        position: fixed;
+        pointer-events: none;
+        opacity: 0.85;
+        z-index: 1;
+      }
+      .cloud.left {
+        animation: cloudLeft linear infinite;
+      }
+      .cloud.right {
+        animation: cloudRight linear infinite;
+      }
+      .cloud.c1 {
+        top: 6%;
+        width: 260px;
+        animation-duration: 140s;
+      }
+      .cloud.c2 {
+        top: 24%;
+        width: 420px;
+        animation-duration: 180s;
+      }
+      .cloud.c3 {
+        top: 48%;
+        width: 300px;
+        animation-duration: 110s;
+      }
+      .cloud.c4 {
+        top: 68%;
+        width: 360px;
+        animation-duration: 160s;
+      }
+
+      @keyframes cloudLeft {
+        from {
+          transform: translateX(120vw);
+        }
+        to {
+          transform: translateX(-400px);
+        }
+      }
+      @keyframes cloudRight {
+        from {
+          transform: translateX(-400px);
+        }
+        to {
+          transform: translateX(120vw);
+        }
+      }
+
+      /* ================= LAYOUT ================= */
+      .wrapper {
+        position: relative;
+        z-index: 2;
+        padding: 80px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 90px;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      /* ================= GLASS ================= */
+      .glass {
+        padding: 60px 30px;
+        border-radius: 32px;
+        background: rgba(255, 255, 255, 0.28);
+        backdrop-filter: blur(22px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+        animation: glassIn 1s ease both;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      .glass.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @keyframes glassIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ================= TEXT ================= */
+      .title {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 18px;
+        color: #0b2d57;
+        position: relative;
+        animation: glow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        0% {
+          text-shadow: 0 0 5px #3498db, 0 0 10px #3498db;
+        }
+        100% {
+          text-shadow: 0 0 15px #5fbdfd, 0 0 30px #5fbdfd;
+        }
+      }
+
+      .subtext {
+        text-align: center;
+        font-size: 1rem;
+        opacity: 0.85;
+        margin-bottom: 32px;
+        line-height: 1.5;
+      }
+
+      /* ================= HOME ================= */
+      .home h1 {
+        text-align: center;
+        font-size: 2.6rem;
+        animation: float 3s ease-in-out infinite;
+        color: #073763;
+        transition: color 0.3s ease;
+        user-select: text;
+      }
+      .home h1:hover,
+      .home h1:focus {
+        color: #1a8cff;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-14px);
+        }
+      }
+
+      /* ================= WISHES ================= */
+      .wishes {
+        display: grid;
+        gap: 20px;
+      }
+      .card {
+        padding: 22px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.55);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        animation: cardFloat 4s ease-in-out infinite alternate;
+        cursor: default;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        user-select: text;
+      }
+      .card:hover,
+      .card:focus {
+        transform: scale(1.05);
+        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.35);
+      }
+      @keyframes cardFloat {
+        to {
+          transform: translateY(-6px);
+        }
+      }
+
+      /* ================= GALLERY ================= */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .pic {
+        height: 130px;
+        border-radius: 20px;
+        background-size: cover;
+        background-position: center;
+        animation: picPulse 4s ease-in-out infinite;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .pic:hover,
+      .pic:focus {
+        transform: scale(1.08);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      }
+      @keyframes picPulse {
+        50% {
+          transform: scale(1.04);
+        }
+      }
+
+      /* ================= MODAL ================= */
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .modal.active {
+        display: flex;
+        opacity: 1;
+      }
+      .modal-box {
+        width: 90%;
+        max-width: 420px;
+        border-radius: 26px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(25px);
+        animation: pop 0.5s ease;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      }
+      @keyframes pop {
+        from {
+          transform: scale(0.7);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .modal img {
+        width: 100%;
+        display: block;
+      }
+      .caption {
+        padding: 16px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.85);
+        animation: captionUp 0.6s ease forwards;
+        opacity: 0;
+      }
+      .modal.active .caption {
+        opacity: 1;
+      }
+      @keyframes captionUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* ================= MESSAGE ================= */
+      .message-box {
+        padding: 28px;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        transition: box-shadow 0.3s ease;
+        user-select: text;
+      }
+      .message-box:hover,
+      .message-box:focus-within {
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+      }
+      .signature {
+        text-align: center;
+        margin-top: 18px;
+        font-weight: 600;
+        color: #104e8b;
+        animation: pulse 2.5s ease-in-out infinite;
+        user-select: text;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          text-shadow: 0 0 8px #1e90ff, 0 0 20px #1e90ff;
+        }
+        50% {
+          text-shadow: 0 0 18px #63b3ed, 0 0 40px #63b3ed;
+        }
+      }
+
+      /* ================= LOCK ================= */
+      ::selection {
+        background: transparent;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- CLOUDS -->
+    <img src="img1.png" class="cloud c1 right" alt="cloud" />
+    <img src="img2.png" class="cloud c2 left" alt="cloud" />
+    <img src="img3.png" class="cloud c3 right" alt="cloud" />
+    <img src="img1.png" class="cloud c4 left" alt="cloud" />
+
+    <div class="wrapper">
+      <!-- HOME -->
+      <section class="glass home">
+        <h1>🎉 Happy New Year 2026 🎉</h1>
+
+        <br /><br />
+
+        <p class="subtext">
+          To my dear Bandhu 🤝, as the new year begins, I want you to know...
+        </p>
+
+        <p class="subtext">
+          You are my steady support 🤍, my laughter partner 😂, my late-night
+          conversation buddy 🌙, and my lifelong friend 🫶✨.
+        </p>
+
+        <p class="subtext">
+          May 2026 bring you joy 💫, fill your days with happiness 😊, and
+          fulfill all your quiet hopes 💭💙.
+        </p>
+
+        <p class="subtext">
+          No matter where life leads us, I am always by your side 💕<br />
+          — today, tomorrow, and every year to come ♾️🌈.
+        </p>
+      </section>
+
+      <!-- WISHES -->
+      <section class="glass">
+        <h2 class="title">New Year Wishes for You, Bandhu 🥂✨</h2>
+
+        <p class="subtext">
+          This year, I wish you more peace 🕊️, more reasons to smile 😄,
+          and a heart free from worries 🤍.
+        </p>
+
+        <p class="subtext">
+          You deserve a year that is strong 💪, balanced ⚖️, and filled with
+          meaningful moments ✨.
+        </p>
+
+        <div class="wishes">
+          <div class="card" tabindex="0">
+            💖 May your smile never fade 😊✨<br />
+            And may happiness find you even on the quietest days 🌷
+          </div>
+
+          <div class="card" tabindex="0">
+            🌠 May your dreams draw closer every day 💙<br />
+            And may you always recognize your worth 💎
+          </div>
+
+          <div class="card" tabindex="0">
+            🕊️ May peace fill your heart 🫶<br />
+            And calm embrace you when life gets hectic 🌊
+          </div>
+
+          <div class="card" tabindex="0">
+            😂 May laughter be your constant companion 💖<br />
+            The kind that leaves you breathless 😆
+          </div>
+
+          <div class="card" tabindex="0">
+            ♾️ May loyalty and love surround you always 💕<br />
+            From friends, moments, and from within 🤍
+          </div>
+
+          <div class="card" tabindex="0">
+            🌈 May 2026 be exceptionally kind to you ✨<br />
+            Because you truly deserve it 🥺💫
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="glass">
+        <h2 class="title">Moments & Memories 📸</h2>
+        <p class="subtext">
+          Photos can’t capture every laugh 😂,<br />
+          the fun 🎉, and the countless moments we've shared 💬 —<br />
+          but they offer a glimpse 👀 into memories<br />
+          we hold close every day 💙.
+        </p>
+        <div class="gallery">
+          <div
+            class="pic"
+            data-caption="A moment worth remembering"
+            style="background-image: url(g1.jpg)"
+            tabindex="0"
+            role="button"
+            aria-label="Open image: A moment worth remembering"
+          ></div>
+          <div
+            class="pic"
+            data-caption="Smiles that never fade"
+            style="background-image: url(g2.jpg)"
+            tabindex="0"
+            role="button"
+            aria-label="Open image: Smiles that never fade"
+          ></div>
+          <div
+            class="pic"
+            data-caption="Memories wrapped in light"
+            style="background-image: url(g3.jpg)"
+            tabindex="0"
+            role="button"
+            aria-label="Open image: Memories wrapped in light"
+          ></div>
+          <div
+            class="pic"
+            data-caption="Another great chapter"
+            style="background-image: url(g4.jpg)"
+            tabindex="0"
+            role="button"
+            aria-label="Open image: Another great chapter"
+          ></div>
+        </div>
+      </section>
+
+      <!-- MESSAGE -->
+      <section class="glass message-box">
+        <h2 class="title">A Personal Message for You 💌</h2>
+
+        <p>
+          Dear Bandhu 👀✨, as the new year unfolds, I want to remind you that you are stronger than you realize, smarter than you give yourself credit for, and one of the finest people I know.
+        </p>
+
+        <p>
+          We've been through challenges, uncontrollable laughter, endless conversations about everything and nothing, and those moments when a single message made the day better 🤍.
+        </p>
+
+        <p>
+          I hope 2026 brings you countless reasons to smile, fewer moments of doubt, and many times where we look back and say “remember that?” 😄💭.
+        </p>
+
+        <p>
+          May your most ambitious dreams come true, and may you always stay true to the kindness that makes you special.
+        </p>
+
+        <p>
+          No matter where life takes us, you will always have my support — cheering you on, teasing you playfully, and reminding you how incredible you are 💕🫶.
+        </p>
+
+        <p>
+          You are truly special to me. Here's to a year full of unforgettable memories, inside jokes, and stories we'll laugh about for years 😜✨.
+        </p>
+
+        <div class="signature">— Shankar 💙</div>
+      </section>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="caption">
+      <div class="modal-box">
+        <img id="modalImg" alt="Gallery Image" />
+        <div class="caption" id="caption"></div>
+      </div>
+    </div>
+
+    <script>
+      /* ================= GALLERY POP + SLIDESHOW ================= */
+      const pics = document.querySelectorAll(".pic");
+      const modal = document.getElementById("modal");
+      const modalImg = document.getElementById("modalImg");
+      const caption = document.getElementById("caption");
+      let index = 0,
+        slide;
+
+      pics.forEach((p, i) => {
+        p.onclick = () => {
+          index = i;
+          openModal();
+        };
+        p.onkeydown = (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            index = i;
+            openModal();
+          }
+        };
+      });
+
+      function openModal() {
+        modal.classList.add("active");
+        show();
+        slide = setInterval(next, 2500);
+      }
+
+      function closeModal() {
+        modal.classList.remove("active");
+        clearInterval(slide);
+      }
+
+      function show() {
+        modalImg.src = pics[index].style.backgroundImage.slice(5, -2);
+        caption.textContent = pics[index].dataset.caption;
+      }
+
+      function next() {
+        index = (index + 1) % pics.length;
+        show();
+      }
+
+      modal.onclick = closeModal;
+
+      /* ================= SCROLL FADE-IN FOR SECTIONS ================= */
+      const glassSections = document.querySelectorAll(".glass");
+
+      function revealOnScroll() {
+        const triggerBottom = window.innerHeight * 0.85;
+        glassSections.forEach((section) => {
+          const top = section.getBoundingClientRect().top;
+          if (top < triggerBottom) {
+            section.classList.add("visible");
+          } else {
+            section.classList.remove("visible");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", revealOnScroll);
+      // Trigger on load
+      revealOnScroll();
+    </script>
+  </body>
+</html>
